@@ -1,26 +1,57 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --color-brand-50: #eefaf3;
+  --color-brand-100: #d7f2e2;
+  --color-brand-200: #b2e5c8;
+  --color-brand-300: #7fd2a6;
+  --color-brand-400: #49ba81;
+  --color-brand-500: #239e64;
+  --color-brand-600: #14804f;
+  --color-brand-700: #116641;
+  --color-brand-800: #105236;
+  --color-brand-900: #0d432d;
+  --color-brand-950: #06271a;
+
+  --color-gold-300: #fcd34d;
+  --color-gold-400: #fbbf24;
+  --color-gold-500: #f59e0b;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #ffffff;
+  color: #111827;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Subtle dotted pattern for hero */
+.hero-pattern {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgb(255 255 255 / 0.14) 1px,
+    transparent 0
+  );
+  background-size: 26px 26px;
+}
+
+/* Number tabular for calculator outputs */
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Slim scrollbars for tables on mobile */
+.slim-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+.slim-scroll::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 999px;
 }

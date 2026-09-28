@@ -4,66 +4,76 @@ import "./globals.css";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], display: "swap" });
+
+const SITE_URL = "https://calculatepktax.vercel.app";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://calculatepktax.vercel.app"),
-
-  title: "Pakistan Salary Tax Calculator 2026-27 | Income Tax Calculator",
-
-  description:
-    "Calculate salary tax in Pakistan for 2026-27. Estimate monthly and annual income tax, tax deductions, take home salary, and net pay using our online tax calculator.",
-
-  keywords: [
-    "Pakistan Salary Tax Calculator",
-    "Salary Tax Calculator Pakistan",
-    "Pakistan Income Tax Calculator",
-    "Income Tax Calculator Pakistan",
-    "Tax Calculator Pakistan",
-    "Salary Tax Pakistan",
-    "Income Tax Pakistan",
-    "Monthly Salary Tax Calculator",
-    "Annual Salary Tax Calculator",
-    "Take Home Salary Calculator",
-    "Net Salary Calculator Pakistan",
-    "Pakistan Tax Slabs 2026-27",
-    "Salary Tax Slabs Pakistan",
-    "Income Tax Slabs Pakistan",
-    "Tax on Salary in Pakistan",
-  ],
-
-  alternates: {
-    canonical: "/",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Salary Tax Calculator Pakistan 2026-27 – CalculatePKTax",
+    template: "%s – CalculatePKTax",
   },
-
+  description:
+    "Calculate salary tax in Pakistan for 2026-27 with FBR's latest slabs. Free income tax calculator — monthly tax, annual tax & take-home salary in seconds.",
+  keywords: [
+    "salary tax calculator pakistan",
+    "income tax calculator pakistan",
+    "pakistan salary tax calculator 2026-27",
+    "fbr tax slabs 2026-27",
+    "tax on salary in pakistan",
+    "take home salary calculator pakistan",
+    "monthly salary tax calculator pakistan",
+  ],
+  authors: [{ name: "CalculatePKTax" }],
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Pakistan Salary Tax Calculator 2026-27 | Income Tax Calculator",
+    title: "Salary Tax Calculator Pakistan 2026-27 – CalculatePKTax",
     description:
-      "Calculate salary tax in Pakistan for 2026-27. Estimate monthly and annual income tax, tax deductions, take home salary, and net pay.",
-    url: "https://calculatepktax.vercel.app/",
+      "Free Pakistan salary tax calculator with FBR's 2026-27 slabs. Monthly tax, annual tax & take-home pay — instantly.",
+    url: SITE_URL,
     siteName: "CalculatePKTax",
     locale: "en_PK",
     type: "website",
   },
-
   twitter: {
     card: "summary_large_image",
-    title: "Pakistan Salary Tax Calculator 2026-27 | Income Tax Calculator",
+    title: "Salary Tax Calculator Pakistan 2026-27 – CalculatePKTax",
     description:
-      "Calculate salary tax in Pakistan for 2026-27 and estimate your monthly tax, annual tax, take home salary, and net pay.",
+      "Free Pakistan salary tax calculator with FBR's 2026-27 slabs. Monthly tax, annual tax & take-home pay — instantly.",
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+    },
+  },
+};
+
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "CalculatePKTax",
+  url: SITE_URL,
+  description:
+    "Free Pakistan salary tax calculator with FBR income tax slabs 2026-27.",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <body
-        className={`${inter.className} min-h-screen flex flex-col bg-white text-gray-900`}
+        className={`${inter.className} flex min-h-screen flex-col bg-white text-gray-900`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+        />
         <Navbar />
         <main className="flex-grow">{children}</main>
         <Footer />

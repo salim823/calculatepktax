@@ -1,485 +1,344 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+import TaxCalculator from "@/app/components/TaxCalculator";
+import Faq from "@/app/components/Faq";
+import {
+  SLABS_2026_27,
+  exampleAtMonthly,
+  formatPKR,
+} from "@/app/lib/tax";
+import { POSTS } from "@/app/lib/posts";
+
+export const metadata: Metadata = {
+  title: "Salary Tax Calculator Pakistan 2026-27 – CalculatePKTax",
+  description:
+    "Calculate salary tax in Pakistan for 2026-27 with FBR's latest slabs. Free income tax calculator — monthly tax, annual tax & take-home salary in seconds.",
+  alternates: { canonical: "/" },
+};
+
+const HOME_FAQS = [
+  {
+    q: "How do I calculate salary tax in Pakistan for 2026-27?",
+    a: "Find your annual salary, match it to FBR's 2026-27 slab, and apply the formula: fixed slab amount + rate × (salary − slab lower limit). Or simply enter your salary in the calculator above — it does the math instantly with a full slab breakdown.",
+  },
+  {
+    q: "What is the minimum salary for tax deduction in Pakistan?",
+    a: "Salary up to Rs 50,000 per month (Rs 600,000 per year) is completely tax-free for salaried individuals in Tax Year 2026-27. Tax applies only to income above this threshold.",
+  },
+  {
+    q: "How much tax is deducted on a Rs 150,000 monthly salary?",
+    a: "For 2026-27: Rs 6,000 per month (Rs 72,000 per year), leaving a take-home pay of Rs 144,000/month. The effective tax rate is 4%.",
+  },
+  {
+    q: "Did salary tax decrease in 2026-27?",
+    a: "Yes. The Finance Act 2026 cut rates in every bracket up to Rs 7 million, split the old flat 35% band into gentler slabs (29%, 32%, 35%), and abolished the 9% surcharge on high earners.",
+  },
+  {
+    q: "Who deducts salary tax in Pakistan?",
+    a: "Your employer deducts it every month under Section 149 of the Income Tax Ordinance — they compute your annual liability from FBR slabs and withhold one-twelfth each month.",
+  },
+  {
+    q: "Is this calculator free to use?",
+    a: "Yes, completely free with no signup. It uses FBR's official Tax Year 2027 slabs for salaried individuals.",
+  },
+];
+
+const appSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Pakistan Salary Tax Calculator 2026-27",
+  url: "https://calculatepktax.vercel.app/",
+  applicationCategory: "FinanceApplication",
+  operatingSystem: "Web",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "PKR" },
+  description:
+    "Free online salary tax calculator for Pakistan with FBR 2026-27 slabs. Monthly tax, annual tax and take-home pay.",
+};
+
+const EXAMPLE_SALARIES = [100000, 150000, 200000, 300000];
 
 export default function Home() {
-  const websiteSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: "CalculatePKTax",
-    url: "https://calculatepktax.vercel.app/",
-  };
-
   return (
-    <div className="bg-white text-gray-900 font-sans">
+    <div>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(websiteSchema),
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }}
       />
 
-      {/* Hero Section */}
-      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center space-y-8">
-        <div className="space-y-4 max-w-3xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 leading-tight">
-            Pakistan Salary Tax Calculator 2026-27
-          </h1>
+      {/* HERO */}
+      <section className="hero-pattern bg-brand-800">
+        <div className="mx-auto max-w-6xl px-4 pb-14 pt-12 sm:px-6 sm:pt-16">
+          <div className="mx-auto max-w-3xl text-center">
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-brand-100 ring-1 ring-white/20">
+              <span className="h-2 w-2 rounded-full bg-gold-400" />
+              FBR Tax Year 2026-27 Slabs
+            </span>
+            <h1 className="mt-5 text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl">
+              Salary Tax Calculator Pakistan
+            </h1>
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-brand-100 sm:text-lg">
+              Calculate your income tax in seconds with FBR&apos;s latest
+              2026-27 slabs. Monthly tax, annual tax, and take-home salary —
+              free, accurate, no signup.
+            </p>
+            <div className="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-semibold text-brand-100">
+              <span>✓ 8 official FBR slabs</span>
+              <span>✓ Slab-by-slab breakdown</span>
+              <span>✓ 2025-26 comparison</span>
+            </div>
+          </div>
 
-          <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
-            Calculate your estimated salary tax in Pakistan for 2026-27.
-            Check monthly and annual income tax, tax deductions, and take-home
-            salary with our online Pakistan salary tax calculator.
-          </p>
-        </div>
-
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
-          <Link
-            href="/calculator"
-            className="w-full sm:w-auto bg-[#1D4ED8] hover:bg-blue-700 text-white font-semibold px-8 py-3.5 rounded-lg shadow-sm transition-colors text-base text-center"
-          >
-            Calculate Salary Tax
-          </Link>
-
-          <Link
-            href="/tax-slabs"
-            className="w-full sm:w-auto bg-white hover:bg-gray-50 text-gray-700 font-semibold px-8 py-3.5 rounded-lg border border-gray-300 shadow-sm transition-colors text-base text-center"
-          >
-            View Tax Slabs
-          </Link>
+          <div className="mx-auto mt-8 max-w-3xl">
+            <TaxCalculator />
+          </div>
         </div>
       </section>
 
-      {/* Pakistan Salary Tax Calculator */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto border-t border-gray-100">
-        <div className="max-w-3xl mx-auto text-center space-y-4">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900">
-            Pakistan Salary Tax Calculator 2026-27
+      {/* STATS */}
+      <section className="border-b border-gray-100 bg-white">
+        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-4 py-8 sm:grid-cols-4 sm:px-6">
+          {[
+            { v: "8", l: "FBR salary slabs" },
+            { v: "Rs 600k", l: "Tax-free per year" },
+            { v: "0%", l: "Surcharge (abolished)" },
+            { v: "100%", l: "Free, no signup" },
+          ].map((s) => (
+            <div key={s.l} className="text-center">
+              <p className="tnum text-2xl font-extrabold text-brand-700 sm:text-3xl">
+                {s.v}
+              </p>
+              <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-gray-500">
+                {s.l}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* SLAB SUMMARY */}
+      <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+        <div className="max-w-2xl">
+          <h2 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
+            FBR Salary Tax Slabs 2026-27
           </h2>
-
-          <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-            CalculatePKTax helps salaried individuals estimate their income tax
-            based on salary and taxable income. Use our Pakistan salary tax
-            calculator to estimate your monthly salary tax, annual income tax,
-            tax deductions, and take-home pay for the 2026-27 tax year.
+          <p className="mt-2 text-base leading-relaxed text-gray-600">
+            Pakistan uses progressive taxation — each portion of your salary is
+            taxed at its slab&apos;s rate. Here&apos;s the official table for
+            salaried individuals.
           </p>
+        </div>
 
-          <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-            Enter your salary to get an estimated tax breakdown and understand
-            how much of your income may remain after the estimated income tax
-            deduction.
-          </p>
+        <div className="slim-scroll mt-6 overflow-x-auto rounded-2xl border border-gray-200">
+          <table className="w-full min-w-[640px] text-sm">
+            <thead>
+              <tr className="bg-brand-700 text-left text-xs uppercase tracking-wider text-white">
+                <th className="px-5 py-3.5 font-bold">Annual Salary</th>
+                <th className="px-5 py-3.5 font-bold">Tax Rate</th>
+                <th className="px-5 py-3.5 font-bold">Tax Formula</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100 bg-white">
+              {SLABS_2026_27.map((s, i) => (
+                <tr key={i} className="transition-colors hover:bg-brand-50/50">
+                  <td className="tnum px-5 py-3 font-semibold text-gray-900">
+                    {s.max
+                      ? `${formatPKR(s.min + 1)} – ${formatPKR(s.max)}`
+                      : `Above ${formatPKR(s.min)}`}
+                  </td>
+                  <td className="px-5 py-3">
+                    <span className="inline-block rounded-full bg-brand-100 px-3 py-1 text-xs font-extrabold text-brand-800">
+                      {(s.rate * 100).toString().replace(/\.0$/, "")}%
+                    </span>
+                  </td>
+                  <td className="tnum px-5 py-3 text-gray-600">
+                    {s.base === 0 && s.rate === 0
+                      ? "No tax"
+                      : `${formatPKR(s.base)} + ${(s.rate * 100).toString().replace(/\.0$/, "")}% above ${formatPKR(s.min)}`}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
-          <div className="pt-2">
-            <Link
-              href="/calculator"
-              className="text-[#1D4ED8] font-semibold hover:underline"
+        <Link
+          href="/tax-slabs"
+          target="_blank"
+          rel="noopener"
+          className="mt-5 inline-flex items-center gap-2 font-bold text-brand-700 hover:underline"
+        >
+          View complete slab guide with examples →
+        </Link>
+      </section>
+
+      {/* EXAMPLES */}
+      <section className="bg-gray-50">
+        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+          <div className="max-w-2xl">
+            <h2 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
+              Salary Tax Examples (2026-27)
+            </h2>
+            <p className="mt-2 text-base text-gray-600">
+              Real calculations at common salary levels — verified against FBR
+              slabs.
+            </p>
+          </div>
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {EXAMPLE_SALARIES.map((m) => {
+              const r = exampleAtMonthly(m);
+              return (
+                <div
+                  key={m}
+                  className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md"
+                >
+                  <p className="tnum text-sm font-bold uppercase tracking-wide text-gray-500">
+                    {formatPKR(m)}/month
+                  </p>
+                  <p className="tnum mt-2 text-2xl font-extrabold text-brand-700">
+                    {formatPKR(r.monthlyTax)}
+                  </p>
+                  <p className="text-xs font-semibold text-gray-500">
+                    monthly tax
+                  </p>
+                  <div className="mt-3 border-t border-gray-100 pt-3 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Annual tax</span>
+                      <span className="tnum font-bold text-gray-900">
+                        {formatPKR(r.annualTax)}
+                      </span>
+                    </div>
+                    <div className="mt-1 flex justify-between">
+                      <span className="text-gray-500">Take-home/mo</span>
+                      <span className="tnum font-bold text-gray-900">
+                        {formatPKR(r.monthlyTakeHome)}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* HOW IT WORKS */}
+      <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+        <div className="max-w-2xl">
+          <h2 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
+            How Salary Tax Works in Pakistan
+          </h2>
+        </div>
+        <div className="mt-8 grid gap-6 md:grid-cols-3">
+          {[
+            {
+              n: "1",
+              t: "Enter your salary",
+              d: "Type your monthly or annual gross salary into the calculator above and pick the tax year. Results appear instantly — no button needed.",
+            },
+            {
+              n: "2",
+              t: "We apply FBR slabs",
+              d: "Your income is split across the 8 official 2026-27 slabs. Each portion is taxed at its own rate — never the top rate on everything.",
+            },
+            {
+              n: "3",
+              t: "See tax & take-home",
+              d: "Get monthly and annual tax, effective tax rate, take-home pay, and a slab-by-slab breakdown you can compare with your payslip.",
+            },
+          ].map((s) => (
+            <div
+              key={s.n}
+              className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm"
             >
-              Use the Pakistan Salary Tax Calculator
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* How Calculator Works */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-        <div className="text-center space-y-3 mb-12">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900">
-            How to Calculate Salary Tax in Pakistan
-          </h2>
-
-          <p className="text-base text-gray-600 max-w-2xl mx-auto">
-            Use the calculator to estimate your salary tax and understand your
-            monthly and annual take-home salary.
-          </p>
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-600 text-base font-extrabold text-white">
+                {s.n}
+              </span>
+              <h3 className="mt-4 text-lg font-extrabold text-gray-900">{s.t}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-gray-600">{s.d}</p>
+            </div>
+          ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-4 shadow-sm transition-all duration-200 hover:scale-[1.02] hover:shadow-md">
-            <div className="w-10 h-10 rounded-full bg-blue-50 text-[#1D4ED8] font-bold text-base flex items-center justify-center">
-              1
-            </div>
-
-            <h3 className="text-lg font-bold text-gray-900">
-              Enter Your Salary
-            </h3>
-
-            <p className="text-sm text-gray-600 leading-relaxed">
-              Enter your monthly or annual salary into the Pakistan income tax
-              calculator to begin your estimated tax calculation.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-4 shadow-sm transition-all duration-200 hover:scale-[1.02] hover:shadow-md">
-            <div className="w-10 h-10 rounded-full bg-blue-50 text-[#1D4ED8] font-bold text-base flex items-center justify-center">
-              2
-            </div>
-
-            <h3 className="text-lg font-bold text-gray-900">
-              Select the Tax Year
-            </h3>
-
-            <p className="text-sm text-gray-600 leading-relaxed">
-              Select the relevant tax year so your estimated calculation uses
-              the appropriate salary tax rules and income tax slabs.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-4 shadow-sm transition-all duration-200 hover:scale-[1.02] hover:shadow-md">
-            <div className="w-10 h-10 rounded-full bg-blue-50 text-[#1D4ED8] font-bold text-base flex items-center justify-center">
-              3
-            </div>
-
-            <h3 className="text-lg font-bold text-gray-900">
-              View Estimated Tax and Net Pay
-            </h3>
-
-            <p className="text-sm text-gray-600 leading-relaxed">
-              Review your estimated annual tax, monthly tax deduction, and
-              take-home salary after the estimated income tax.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Pakistan Tax Slabs */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-        <div className="bg-gray-50 border border-gray-200 rounded-2xl p-8 sm:p-12 text-center space-y-6">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900">
-            Pakistan Salary Tax Slabs 2026-27
-          </h2>
-
-          <p className="text-base sm:text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
-            Pakistan salary tax is calculated according to applicable taxable
-            income slabs. Understanding the salary tax slabs can help you
-            estimate your income tax liability and understand how different
-            taxable income levels are treated.
+        <div className="prose-like mt-10 max-w-3xl space-y-4 text-[15px] leading-relaxed text-gray-700">
+          <h3 className="text-xl font-extrabold text-gray-900">
+            Who pays salary tax in Pakistan?
+          </h3>
+          <p>
+            Anyone earning salary income above Rs 50,000 per month (Rs 600,000
+            per year) pays income tax. Your employer deducts it every month
+            under Section 149 of the Income Tax Ordinance — you never pay it
+            separately. These slabs apply when salary is more than 75% of your
+            total taxable income.
           </p>
-
-          <p className="text-base sm:text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
-            View the detailed Pakistan tax slabs for 2026-27 on our dedicated
-            tax slabs page.
-          </p>
-
-          <div>
+          <h3 className="text-xl font-extrabold text-gray-900">
+            Why did tax decrease in 2026-27?
+          </h3>
+          <p>
+            The Finance Act 2026 gave the salaried class major relief: rates
+            were cut in every bracket up to Rs 7 million, the old flat 35%
+            top band was split into three gentler slabs (29%, 32%, 35%), and
+            the 9% surcharge on income above Rs 10 million was abolished.
+            Most salaried Pakistanis now keep noticeably more of their pay.{" "}
             <Link
               href="/tax-slabs"
-              className="inline-block bg-[#1D4ED8] hover:bg-blue-700 text-white font-semibold px-8 py-3.5 rounded-lg shadow-sm transition-colors text-base"
+              target="_blank"
+              rel="noopener"
+              className="font-bold text-brand-700 hover:underline"
             >
-              View Pakistan Tax Slabs
+              See the full comparison →
             </Link>
+          </p>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="bg-gray-50">
+        <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
+          <h2 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
+            Frequently Asked Questions
+          </h2>
+          <p className="mt-2 text-base text-gray-600">
+            Quick answers about salary tax in Pakistan for 2026-27.
+          </p>
+          <div className="mt-6">
+            <Faq items={HOME_FAQS} />
           </div>
         </div>
       </section>
 
-      {/* Monthly and Annual Tax */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-        <div className="text-center space-y-3 mb-12">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900">
-            Monthly and Annual Income Tax Calculator
+      {/* LATEST POSTS */}
+      <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+        <div className="flex items-end justify-between">
+          <h2 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
+            Latest Tax Guides
           </h2>
-
-          <p className="text-base text-gray-600 max-w-2xl mx-auto">
-            Estimate your salary tax, income tax deductions, and take-home
-            salary using monthly or annual salary information.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-3 shadow-sm">
-            <h3 className="font-bold text-gray-900 text-lg">
-              Monthly Salary Tax Calculator
-            </h3>
-
-            <p className="text-sm text-gray-600 leading-relaxed">
-              Estimate the income tax that may apply to your monthly salary and
-              understand your estimated monthly tax deduction and net salary.
-            </p>
-
-            <Link
-              href="/calculator"
-              className="inline-block text-[#1D4ED8] font-semibold hover:underline"
-            >
-              Calculate Monthly Salary Tax
-            </Link>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-3 shadow-sm">
-            <h3 className="font-bold text-gray-900 text-lg">
-              Annual Income Tax Calculator
-            </h3>
-
-            <p className="text-sm text-gray-600 leading-relaxed">
-              Estimate your annual salary tax based on your yearly taxable
-              income and understand your estimated yearly tax liability.
-            </p>
-
-            <Link
-              href="/calculator"
-              className="inline-block text-[#1D4ED8] font-semibold hover:underline"
-            >
-              Calculate Annual Income Tax
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* What You Can Calculate */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-        <div className="text-center space-y-3 mb-12">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900">
-            What You Can Calculate
-          </h2>
-
-          <p className="text-base text-gray-600 max-w-2xl mx-auto">
-            Calculate important salary and income tax figures to better
-            understand your estimated tax deductions and take-home pay.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-3 shadow-sm">
-            <h3 className="font-bold text-gray-900 text-lg">
-              Annual Salary Tax
-            </h3>
-
-            <p className="text-sm text-gray-600 leading-relaxed">
-              Estimate your yearly income tax based on your annual taxable
-              salary.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-3 shadow-sm">
-            <h3 className="font-bold text-gray-900 text-lg">
-              Monthly Salary Tax
-            </h3>
-
-            <p className="text-sm text-gray-600 leading-relaxed">
-              Estimate the income tax deduction that may apply to your monthly
-              salary.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-3 shadow-sm">
-            <h3 className="font-bold text-gray-900 text-lg">
-              Annual Take-Home Salary
-            </h3>
-
-            <p className="text-sm text-gray-600 leading-relaxed">
-              Estimate your yearly take-home income after the estimated salary
-              tax deduction.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-3 shadow-sm">
-            <h3 className="font-bold text-gray-900 text-lg">
-              Monthly Take-Home Salary
-            </h3>
-
-            <p className="text-sm text-gray-600 leading-relaxed">
-              Estimate your monthly net salary after the estimated income tax
-              deduction.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-3 shadow-sm">
-            <h3 className="font-bold text-gray-900 text-lg">
-              Effective Tax Rate
-            </h3>
-
-            <p className="text-sm text-gray-600 leading-relaxed">
-              Understand the estimated percentage of taxable income represented
-              by your calculated income tax.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-3 shadow-sm">
-            <h3 className="font-bold text-gray-900 text-lg">
-              Tax Estimate by Tax Year
-            </h3>
-
-            <p className="text-sm text-gray-600 leading-relaxed">
-              Review estimated salary tax calculations for the available tax
-              years supported by the calculator.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Take Home Salary */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-        <div className="max-w-3xl mx-auto space-y-6 bg-white border border-gray-200 rounded-2xl p-8 sm:p-12 shadow-sm">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900">
-            Take-Home Salary Calculator Pakistan
-          </h2>
-
-          <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-            Your take-home salary is the amount you receive after applicable
-            deductions are taken from your gross salary. An online take-home
-            salary calculator can help you understand the estimated difference
-            between your gross earnings, estimated salary tax, and net pay.
-          </p>
-
-          <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-            Use CalculatePKTax to estimate your monthly and annual take-home
-            salary based on your salary information and the selected tax year.
-          </p>
-
           <Link
-            href="/calculator"
-            className="inline-block text-[#1D4ED8] font-semibold hover:underline"
+            href="/blog"
+            target="_blank"
+            rel="noopener"
+            className="text-sm font-bold text-brand-700 hover:underline"
           >
-            Calculate Your Take-Home Salary
+            All guides →
           </Link>
         </div>
-      </section>
-
-      {/* Salary Tax Information */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-        <div className="max-w-3xl mx-auto space-y-6">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 text-center">
-            Salary Tax in Pakistan
-          </h2>
-
-          <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-            Salary tax in Pakistan depends on taxable income and the applicable
-            income tax rules for the relevant tax year. Salaried individuals
-            can use a salary tax calculator to estimate their annual tax,
-            monthly tax deduction, and net salary.
-          </p>
-
-          <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-            The actual tax payable can depend on individual circumstances and
-            applicable deductions, exemptions, allowances, and tax rules.
-            CalculatePKTax provides estimates to help users understand their
-            potential salary tax and take-home income.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
+        <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {POSTS.slice(0, 3).map((p) => (
             <Link
-              href="/tax-slabs"
-              className="text-center bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold px-6 py-3 rounded-lg transition-colors"
+              key={p.slug}
+              href={`/blog/${p.slug}`}
+              target="_blank"
+              rel="noopener"
+              className="group rounded-2xl border border-gray-200 bg-white p-5 transition-all hover:-translate-y-1 hover:shadow-md"
             >
-              Explore Tax Slabs
+              <p className="text-xs font-bold uppercase tracking-widest text-brand-600">
+                {p.category}
+              </p>
+              <h3 className="mt-2 font-extrabold leading-snug text-gray-900 group-hover:text-brand-700">
+                {p.title}
+              </h3>
+              <p className="mt-2 text-sm text-gray-600">{p.readTime}</p>
             </Link>
-
-            <Link
-              href="/blog"
-              className="text-center bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold px-6 py-3 rounded-lg transition-colors"
-            >
-              Read Tax Guides
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Frequently Asked Questions */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-8">
-        <div className="text-center space-y-3">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900">
-            Frequently Asked Questions About Salary Tax in Pakistan
-          </h2>
-
-          <p className="text-base text-gray-600">
-            Common questions about Pakistan salary tax, income tax calculations,
-            tax slabs, and take-home salary.
-          </p>
-        </div>
-
-        <div className="space-y-6">
-          <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-2 shadow-sm">
-            <h3 className="text-lg font-bold text-gray-900">
-              What is a salary tax calculator in Pakistan?
-            </h3>
-
-            <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-              A salary tax calculator is an online tool that estimates income
-              tax for salaried individuals based on salary information and the
-              applicable tax rules for the selected tax year.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-2 shadow-sm">
-            <h3 className="text-lg font-bold text-gray-900">
-              How is salary tax calculated in Pakistan?
-            </h3>
-
-            <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-              Salary tax is generally calculated using taxable income and the
-              applicable income tax slabs and rates for the relevant tax year.
-              Use the calculator to estimate your salary tax based on the
-              information you enter.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-2 shadow-sm">
-            <h3 className="text-lg font-bold text-gray-900">
-              Can I calculate monthly salary tax?
-            </h3>
-
-            <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-              Yes. You can enter your salary information in the calculator to
-              estimate your monthly tax deduction and monthly take-home salary.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-2 shadow-sm">
-            <h3 className="text-lg font-bold text-gray-900">
-              Can I calculate annual income tax in Pakistan?
-            </h3>
-
-            <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-              Yes. The calculator can be used to estimate annual salary tax
-              based on your annual taxable income and the selected tax year.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-2 shadow-sm">
-            <h3 className="text-lg font-bold text-gray-900">
-              What is the difference between gross salary and take-home salary?
-            </h3>
-
-            <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-              Gross salary is the salary amount before applicable deductions,
-              while take-home salary is the amount remaining after applicable
-              deductions. Income tax can be one of the deductions affecting
-              your net salary.
-            </p>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-2 shadow-sm">
-            <h3 className="text-lg font-bold text-gray-900">
-              Are the calculator results final tax amounts?
-            </h3>
-
-            <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-              No. Calculator results are estimates for informational purposes.
-              Individual circumstances and applicable tax rules can affect the
-              final tax liability. For formal tax matters, refer to current FBR
-              guidance or consult a qualified tax professional.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center">
-        <div className="bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-2xl p-8 sm:p-14 space-y-6 shadow-sm">
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900">
-            Calculate Your Salary Tax
-          </h2>
-
-          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Estimate your Pakistan salary tax, income tax deduction, and
-            take-home salary for the selected tax year in seconds.
-          </p>
-
-          <div>
-            <Link
-              href="/calculator"
-              className="inline-block bg-[#1D4ED8] hover:bg-blue-700 text-white font-semibold px-8 py-3.5 rounded-lg shadow-sm transition-colors text-base"
-            >
-              Calculate Salary Tax
-            </Link>
-          </div>
+          ))}
         </div>
       </section>
     </div>

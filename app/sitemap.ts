@@ -1,4 +1,5 @@
 import { MetadataRoute } from "next";
+import { POSTS } from "@/app/lib/posts";
 
 export const dynamic = "force-static";
 
@@ -8,7 +9,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const paths = [
     "",
-    "/calculator",
     "/tax-slabs",
     "/blog",
     "/about",
@@ -16,15 +16,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/privacy-policy",
     "/terms",
     "/disclaimer",
-    "/blog/pakistan-tax-calculator",
-    "/blog/understanding-salary-tax-slabs-pakistan",
-    "/blog/pakistan-income-tax-calculator",
+    ...POSTS.map((p) => `/blog/${p.slug}`),
   ];
 
   return paths.map((path) => ({
     url: `${baseUrl}${path}`,
     lastModified,
     changeFrequency: "weekly" as const,
-    priority: path === "" ? 1.0 : 0.8,
+    priority: path === "" ? 1.0 : path.startsWith("/blog/") ? 0.7 : 0.8,
   }));
 }

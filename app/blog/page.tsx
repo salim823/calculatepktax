@@ -1,99 +1,61 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+import { POSTS } from "@/app/lib/posts";
+
+export const metadata: Metadata = {
+  title: "Pakistan Tax Guides & Blog",
+  description:
+    "Tax guides for Pakistan: FBR slabs 2026-27 explained, salary tax examples, take-home pay guides and employer deduction rules.",
+  alternates: { canonical: "/blog" },
+};
 
 export default function BlogIndexPage() {
   return (
-    <div className="bg-white text-gray-900 font-sans py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto space-y-12">
-      
-      {/* Header Section */}
-      <div className="text-center space-y-4 pt-4 sm:pt-6">
-        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900">
-          CalculatePKTax Blog
+    <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-16">
+      <div className="max-w-2xl">
+        <p className="text-sm font-bold uppercase tracking-widest text-brand-600">
+          Blog
+        </p>
+        <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+          Pakistan Tax Guides
         </h1>
-        <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          Explore helpful articles, guides, and updates regarding personal finance, salary tax calculations, tax slabs, and take-home pay in Pakistan.
+        <p className="mt-3 text-base leading-relaxed text-gray-600">
+          Simple, accurate guides on salary tax, FBR slabs, and take-home pay —
+          written for Pakistani salaried individuals.
         </p>
       </div>
 
-      {/* Blog Articles Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        
-        {/* Article 1 (Connected to dynamic slug) */}
-        <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-4 shadow-sm transition-all duration-200 hover:shadow-md flex flex-col justify-between">
-          <div className="space-y-3">
-            <div className="flex items-center gap-2 text-xs text-gray-500 font-medium">
-              <span>Tax Guide</span>
-              <span>•</span>
-              <span>5 min read</span>
+      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {POSTS.map((p) => (
+          <Link
+            key={p.slug}
+            href={`/blog/${p.slug}`}
+            target="_blank"
+            rel="noopener"
+            className="group flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white transition-all hover:-translate-y-1 hover:shadow-lg"
+          >
+            <div className="bg-brand-700 px-5 py-4">
+              <span className="text-xs font-bold uppercase tracking-widest text-brand-200">
+                {p.category}
+              </span>
             </div>
-            <h2 className="text-xl font-bold text-gray-900 leading-snug">
-              Pakistan Tax Calculator: How to Calculate Your Tax Easily
-            </h2>
-            <p className="text-sm text-gray-600 leading-relaxed">
-              Learn how to easily calculate your salary tax, understand progressive FBR tax slabs, and project your net take-home pay using our online tools.
-            </p>
-          </div>
-          <div className="pt-4 border-t border-gray-100">
-            <Link
-              href="/blog/pakistan-tax-calculator"
-              className="text-sm font-semibold text-[#1D4ED8] hover:underline inline-flex items-center gap-1"
-            >
-              Read Article →
-            </Link>
-          </div>
-        </div>
-
-        {/* Article 2 (Connected to second dynamic slug) */}
-        <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-4 shadow-sm transition-all duration-200 hover:shadow-md flex flex-col justify-between">
-          <div className="space-y-3">
-            <div className="flex items-center gap-2 text-xs text-gray-500 font-medium">
-              <span>Tax Slabs</span>
-              <span>•</span>
-              <span>4 min read</span>
+            <div className="flex flex-1 flex-col p-5">
+              <h2 className="text-lg font-extrabold leading-snug text-gray-900 group-hover:text-brand-700">
+                {p.title}
+              </h2>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-gray-600">
+                {p.description}
+              </p>
+              <div className="mt-4 flex items-center justify-between text-xs text-gray-400">
+                <span>{p.readTime}</span>
+                <span className="font-bold text-brand-600 group-hover:underline">
+                  Read guide →
+                </span>
+              </div>
             </div>
-            <h2 className="text-xl font-bold text-gray-900 leading-snug">
-              Understanding Salary Tax Slabs in Pakistan
-            </h2>
-            <p className="text-sm text-gray-600 leading-relaxed">
-              A comprehensive breakdown of how progressive income tax brackets apply to salaried individuals across different earnings tiers.
-            </p>
-          </div>
-          <div className="pt-4 border-t border-gray-100">
-            <Link
-              href="/blog/understanding-salary-tax-slabs-pakistan"
-              className="text-sm font-semibold text-[#1D4ED8] hover:underline inline-flex items-center gap-1"
-            >
-              Read Article →
-            </Link>
-          </div>
-        </div>
-
-        {/* Article 3 (Connected to third dynamic slug) */}
-        <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-4 shadow-sm transition-all duration-200 hover:shadow-md flex flex-col justify-between">
-          <div className="space-y-3">
-            <div className="flex items-center gap-2 text-xs text-gray-500 font-medium">
-              <span>Income Tax</span>
-              <span>•</span>
-              <span>5 min read</span>
-            </div>
-            <h2 className="text-xl font-bold text-gray-900 leading-snug">
-              Pakistan Income Tax Calculator: Understanding Your Tax Estimate
-            </h2>
-            <p className="text-sm text-gray-600 leading-relaxed">
-              Understand how a Pakistan income tax calculator estimates your annual tax, monthly tax, and take home salary using applicable salaried income tax rules.
-            </p>
-          </div>
-          <div className="pt-4 border-t border-gray-100">
-            <Link
-              href="/blog/pakistan-income-tax-calculator"
-              className="text-sm font-semibold text-[#1D4ED8] hover:underline inline-flex items-center gap-1"
-            >
-              Read Article →
-            </Link>
-          </div>
-        </div>
-
+          </Link>
+        ))}
       </div>
-
     </div>
   );
 }
