@@ -10,9 +10,9 @@ import {
 import { POSTS } from "@/app/lib/posts";
 
 export const metadata: Metadata = {
-  title: "Salary Tax Calculator Pakistan 2026-27 – CalculatePKTax",
+  title: "Salary Tax Calculator Pakistan – FBR Tax Slabs 2026-27",
   description:
-    "Calculate salary tax in Pakistan for 2026-27 with FBR's latest slabs. Free income tax calculator — monthly tax, annual tax & take-home salary in seconds.",
+    "Calculate your salary tax in Pakistan for 2026-27 with official FBR slabs. Free income tax calculator — monthly tax, annual tax, take-home salary & effective rate in seconds.",
   alternates: { canonical: "/" },
 };
 
