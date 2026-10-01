@@ -11,16 +11,21 @@ const SITE_URL = "https://calculatepktax.vercel.app";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Salary Tax Calculator Pakistan 2026-27 – CalculatePKTax",
+    default: "Salary Tax Calculator Pakistan – FBR Tax Slabs 2026-27",
     template: "%s – CalculatePKTax",
   },
   description:
-    "Calculate salary tax in Pakistan for 2026-27 with FBR's latest slabs. Free income tax calculator — monthly tax, annual tax & take-home salary in seconds.",
+    "Free salary tax calculator for Pakistan with FBR's official 2026-27 slabs. Get monthly tax, annual tax & take-home salary in seconds — no signup.",
   keywords: [
     "salary tax calculator pakistan",
     "income tax calculator pakistan",
     "pakistan salary tax calculator 2026-27",
     "fbr tax slabs 2026-27",
+    "tax slab 2026-27 pakistan",
+    "pakistan salary calculator",
+    "new tax slab for salaried person",
+    "tax calculator pakistan",
+    "tax calculator 2025-26",
     "tax on salary in pakistan",
     "take home salary calculator pakistan",
     "monthly salary tax calculator pakistan",
@@ -28,9 +33,9 @@ export const metadata: Metadata = {
   authors: [{ name: "CalculatePKTax" }],
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Salary Tax Calculator Pakistan 2026-27 – CalculatePKTax",
+    title: "Salary Tax Calculator Pakistan – FBR Tax Slabs 2026-27",
     description:
-      "Free Pakistan salary tax calculator with FBR's 2026-27 slabs. Monthly tax, annual tax & take-home pay — instantly.",
+      "Free salary tax calculator for Pakistan with FBR's official 2026-27 tax slabs. Monthly tax, annual tax & take-home pay — instantly, no signup.",
     url: SITE_URL,
     siteName: "CalculatePKTax",
     locale: "en_PK",
@@ -38,9 +43,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Salary Tax Calculator Pakistan 2026-27 – CalculatePKTax",
+    title: "Salary Tax Calculator Pakistan – FBR Tax Slabs 2026-27",
     description:
-      "Free Pakistan salary tax calculator with FBR's 2026-27 slabs. Monthly tax, annual tax & take-home pay — instantly.",
+      "Free salary tax calculator for Pakistan with FBR's official 2026-27 tax slabs. Monthly tax, annual tax & take-home pay — instantly, no signup.",
   },
   robots: {
     index: true,

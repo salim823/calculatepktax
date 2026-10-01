@@ -22,6 +22,10 @@ const HOME_FAQS = [
     a: "Find your annual salary, match it to FBR's 2026-27 slab, and apply the formula: fixed slab amount + rate × (salary − slab lower limit). Or simply enter your salary in the calculator above — it does the math instantly with a full slab breakdown.",
   },
   {
+    q: "What are the new tax slabs for salaried persons in 2026-27?",
+    a: "Eight FBR slabs apply for 2026-27: 0% up to Rs 600,000/year, 1% to Rs 1.2M, 11% to Rs 2.2M, 20% to Rs 3.2M, 25% to Rs 4.1M, 29% to Rs 5.6M, 32% to Rs 7M, and 35% above Rs 7M. The old 9% surcharge on high salaries is abolished.",
+  },
+  {
     q: "What is the minimum salary for tax deduction in Pakistan?",
     a: "Salary up to Rs 50,000 per month (Rs 600,000 per year) is completely tax-free for salaried individuals in Tax Year 2026-27. Tax applies only to income above this threshold.",
   },
@@ -39,7 +43,7 @@ const HOME_FAQS = [
   },
   {
     q: "Is this calculator free to use?",
-    a: "Yes, completely free with no signup. It uses FBR's official Tax Year 2027 slabs for salaried individuals.",
+    a: "Yes, completely free with no signup. It uses FBR's official Tax Year 2026-27 slabs for salaried individuals.",
   },
 ];
 
@@ -56,6 +60,10 @@ const appSchema = {
 };
 
 const EXAMPLE_SALARIES = [100000, 150000, 200000, 300000];
+
+/** Display-only percent label without float dust ("29%" not "28.999999999999996%"). Tax math untouched. */
+const rateLabel = (rate: number) =>
+  `${parseFloat((rate * 100).toFixed(2)).toString()}%`;
 
 export default function Home() {
   return (
@@ -74,7 +82,7 @@ export default function Home() {
               FBR Tax Year 2026-27 Slabs
             </span>
             <h1 className="mt-5 text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl">
-              Salary Tax Calculator Pakistan
+              Salary Tax Calculator Pakistan 2026-27
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-brand-100 sm:text-lg">
               Calculate your income tax in seconds with FBR&apos;s latest
@@ -119,7 +127,7 @@ export default function Home() {
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
         <div className="max-w-2xl">
           <h2 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
-            FBR Salary Tax Slabs 2026-27
+            Tax Slabs 2026-27 Pakistan — FBR Official Rates
           </h2>
           <p className="mt-2 text-base leading-relaxed text-gray-600">
             Pakistan uses progressive taxation — each portion of your salary is
@@ -147,13 +155,13 @@ export default function Home() {
                   </td>
                   <td className="px-5 py-3">
                     <span className="inline-block rounded-full bg-brand-100 px-3 py-1 text-xs font-extrabold text-brand-800">
-                      {(s.rate * 100).toString().replace(/\.0$/, "")}%
+                      {rateLabel(s.rate)}
                     </span>
                   </td>
                   <td className="tnum px-5 py-3 text-gray-600">
                     {s.base === 0 && s.rate === 0
                       ? "No tax"
-                      : `${formatPKR(s.base)} + ${(s.rate * 100).toString().replace(/\.0$/, "")}% above ${formatPKR(s.min)}`}
+                      : `${formatPKR(s.base)} + ${rateLabel(s.rate)} above ${formatPKR(s.min)}`}
                   </td>
                 </tr>
               ))}

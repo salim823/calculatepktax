@@ -108,7 +108,7 @@ export function calculateTax(annualGross: number, year: TaxYear): TaxResult {
 export function slabLabel(slab: TaxSlab): string {
   const from = formatPKR(slab.min);
   const to = slab.max ? formatPKR(slab.max) : "above";
-  const pct = `${(slab.rate * 100).toString().replace(/\.0$/, "")}%`;
+  const pct = `${parseFloat((slab.rate * 100).toFixed(2)).toString()}%`;
   return slab.max ? `${from} – ${to} · ${pct}` : `Above ${from} · ${pct}`;
 }
 

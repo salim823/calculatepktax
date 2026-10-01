@@ -29,9 +29,13 @@ const SLAB_FAQS = [
   },
   {
     q: "Where can I verify these slab rates officially?",
-    a: "FBR's Tax Year 2027 salary rates notification and the Finance Act 2026, available on FBR's official website (fbr.gov.pk). Employers are required to deduct tax using these exact rates.",
+    a: "FBR's Tax Year 2026-27 salary rates notification and the Finance Act 2026, available on FBR's official website (fbr.gov.pk). Employers are required to deduct tax using these exact rates.",
   },
 ];
+
+/** Display-only percent label without float dust ("29%" not "28.999999999999996%"). Tax math untouched. */
+const rateLabel = (rate: number) =>
+  `${parseFloat((rate * 100).toFixed(2)).toString()}%`;
 
 function SlabTable({
   slabs,
@@ -61,13 +65,13 @@ function SlabTable({
               </td>
               <td className="px-5 py-3">
                 <span className="inline-block rounded-full bg-brand-100 px-3 py-1 text-xs font-extrabold text-brand-800">
-                  {(s.rate * 100).toString().replace(/\.0$/, "")}%
+                  {rateLabel(s.rate)}
                 </span>
               </td>
               <td className="tnum px-5 py-3 text-gray-600">
                 {s.base === 0 && s.rate === 0
                   ? "Nil"
-                  : `${formatPKR(s.base)} + ${(s.rate * 100).toString().replace(/\.0$/, "")}% of amount exceeding ${formatPKR(s.min)}`}
+                  : `${formatPKR(s.base)} + ${rateLabel(s.rate)} of amount exceeding ${formatPKR(s.min)}`}
               </td>
             </tr>
           ))}
