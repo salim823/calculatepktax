@@ -16,7 +16,7 @@ export interface BlogPost {
   faqs: { q: string; a: string }[];
 }
 
-export const POSTS: BlogPost[] = [
+export const EXISTING_POSTS: BlogPost[] = [
   {
     slug: "tax-on-50000-salary-pakistan",
     title: "Tax on Rs 50,000 Salary in Pakistan 2026-27 – Is It Tax-Free?",
@@ -465,11 +465,3 @@ export const POSTS: BlogPost[] = [
     ],
   },
 ];
-
-export function getPost(slug: string): BlogPost | undefined {
-  return POSTS.find((p) => p.slug === slug);
-}
-
-export function getRelatedPosts(slug: string, count = 3): BlogPost[] {
-  return POSTS.filter((p) => p.slug !== slug).slice(0, count);
-}
