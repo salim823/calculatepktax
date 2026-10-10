@@ -10,6 +10,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const paths = [
     "",
     "/tax-slabs",
+    "/bonus-calculator",
     "/blog",
     "/about",
     "/contact",

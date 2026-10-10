@@ -10,9 +10,9 @@ import {
 import { POSTS } from "@/app/lib/posts";
 
 export const metadata: Metadata = {
-  title: "Salary Tax Calculator Pakistan – FBR Tax Slabs 2026-27",
+  title: "Monthly Salary Tax Calculator Pakistan | FBR Slabs 2026-27",
   description:
-    "Calculate your salary tax in Pakistan for 2026-27 with official FBR slabs. Free income tax calculator — monthly tax, annual tax, take-home salary & effective rate in seconds.",
+    "Free tax calculator Pakistan: use our monthly salary tax calculator with official FBR 2026-27 slabs — monthly tax, annual tax, take-home salary & effective rate in seconds.",
   alternates: { canonical: "/" },
 };
 
@@ -85,9 +85,9 @@ export default function Home() {
               Salary Tax Calculator Pakistan 2026-27
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-brand-100 sm:text-lg">
-              Calculate your income tax in seconds with FBR&apos;s latest
-              2026-27 slabs. Monthly tax, annual tax, and take-home salary —
-              free, accurate, no signup.
+              Our monthly salary tax calculator gives your income tax in
+              seconds with FBR&apos;s latest 2026-27 slabs. Monthly tax,
+              annual tax, and take-home salary — free, accurate, no signup.
             </p>
             <div className="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-semibold text-brand-100">
               <span>✓ 8 official FBR slabs</span>
@@ -311,6 +311,27 @@ export default function Home() {
           <div className="mt-6">
             <Faq items={HOME_FAQS} />
           </div>
+        </div>
+      </section>
+
+      {/* RELATED TOOLS */}
+      <section className="border-t border-gray-100 bg-white">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-8 gap-y-3 px-4 py-8 sm:px-6">
+          <span className="text-sm font-bold uppercase tracking-widest text-gray-400">
+            Related tools
+          </span>
+          <Link
+            href="/bonus-calculator"
+            className="text-sm font-bold text-brand-700 hover:underline"
+          >
+            Bonus calculator Pakistan →
+          </Link>
+          <Link
+            href="/tax-slabs"
+            className="text-sm font-bold text-brand-700 hover:underline"
+          >
+            FBR tax slabs 2026-27 →
+          </Link>
         </div>
       </section>
 

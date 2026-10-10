@@ -16,6 +16,26 @@ export const metadata: Metadata = {
 
 const SLAB_FAQS = [
   {
+    q: "What are the FBR tax slabs for 2026-27?",
+    a: "FBR's 2026-27 tax slabs for salaried individuals are: 0% up to Rs 600,000/year, 1% to Rs 1.2M, 11% to Rs 2.2M, 20% to Rs 3.2M, 25% to Rs 4.1M, 29% to Rs 5.6M, 32% to Rs 7M, and 35% above Rs 7M. The full table with formulas is shown above.",
+  },
+  {
+    q: "What are the income tax slabs in Pakistan for salaried individuals?",
+    a: "Pakistan uses progressive income tax slabs for salary income: each portion of your annual salary is taxed at its own slab rate, from 0% to 35% in 2026-27. Your employer applies these FBR slabs to compute monthly withholding under Section 149.",
+  },
+  {
+    q: "What is the salary tax slab rate for a Rs 200,000 monthly salary?",
+    a: "Rs 200,000/month equals Rs 2.4M/year, which falls in the 20% slab (Rs 2.2M–3.2M). Annual tax is Rs 156,000 — about Rs 13,000/month, an effective rate of 6.5%. Remember: only the portion above Rs 2.2M is taxed at 20%.",
+  },
+  {
+    q: "Are FBR tax slabs the same in every province of Pakistan?",
+    a: "Yes. Income tax on salary is a federal tax administered by FBR, so the same slabs apply in Punjab, Sindh, KPK, Balochistan, Islamabad, Gilgit-Baltistan and AJK.",
+  },
+  {
+    q: "When do the new FBR tax slabs take effect?",
+    a: "The 2026-27 slabs apply from 1 July 2026 (Tax Year 2027). Employers started withholding tax at the new, lower rates from July 2026 salaries.",
+  },
+  {
     q: "How many income tax slabs are there in Pakistan for 2026-27?",
     a: "Eight slabs for salaried individuals, restructured from six by the Finance Act 2026. Rates run from 0% (up to Rs 600,000/year) to 35% (above Rs 7,000,000/year).",
   },
@@ -103,7 +123,7 @@ export default function TaxSlabsPage() {
           Pakistan Salary Tax Slabs 2026-27
         </h1>
         <p className="mt-3 text-base leading-relaxed text-gray-600">
-          Complete income tax slab table for salaried individuals for Tax Year
+          Complete FBR tax slabs table for salaried individuals for Tax Year
           2027 (1 July 2026 – 30 June 2027), per FBR&apos;s notification under
           the Finance Act 2026. Your employer uses these exact rates for
           monthly tax deduction.
