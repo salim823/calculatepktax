@@ -3,10 +3,17 @@ import type { Metadata } from "next";
 import { POSTS } from "@/app/lib/posts";
 
 export const metadata: Metadata = {
-  title: "Pakistan Tax Guides & Blog",
+  title: "Pakistan Tax Guides | FBR Slabs & Salary Tax Explained",
   description:
     "Tax guides for Pakistan: FBR slabs 2026-27 explained, salary tax examples, take-home pay guides and employer deduction rules.",
   alternates: { canonical: "/blog" },
+  openGraph: {
+    title: "Pakistan Tax Guides | FBR Slabs & Salary Tax Explained",
+    description:
+      "FBR slabs 2026-27 explained, salary tax examples, take-home pay guides and employer deduction rules for Pakistan.",
+    url: "https://calculatepktax.vercel.app/blog",
+    type: "website",
+  },
 };
 
 export default function BlogIndexPage() {

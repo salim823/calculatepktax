@@ -40,6 +40,20 @@ const articleSchema = (post: NonNullable<ReturnType<typeof getPost>>) => ({
   author: { "@type": "Organization", name: "CalculatePKTax" },
 });
 
+/** Render [anchor text](/internal-path) as real internal links inside post paragraphs. */
+function renderInlineLinks(text: string) {
+  const parts = text.split(/(\[[^\]]+\]\(\/[^)]+\))/g);
+  return parts.map((part, i) => {
+    const m = part.match(/^\[([^\]]+)\]\((\/[^)]+)\)$/);
+    if (!m) return <span key={i}>{part}</span>;
+    return (
+      <Link key={i} href={m[2]} className="font-bold text-brand-700 hover:underline">
+        {m[1]}
+      </Link>
+    );
+  });
+}
+
 export default async function BlogPostPage({
   params,
 }: {
@@ -51,11 +65,40 @@ export default async function BlogPostPage({
 
   const related = getRelatedPosts(slug);
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://calculatepktax.vercel.app/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Blog",
+        item: "https://calculatepktax.vercel.app/blog",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.title,
+        item: `https://calculatepktax.vercel.app/blog/${post.slug}`,
+      },
+    ],
+  };
+
   return (
     <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema(post)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       <nav className="text-xs font-semibold text-gray-400" aria-label="Breadcrumb">
@@ -96,7 +139,7 @@ export default async function BlogPostPage({
             <div className="mt-3 space-y-4">
               {s.paragraphs.map((para, j) => (
                 <p key={j} className="text-[15px] leading-relaxed text-gray-700 sm:text-base">
-                  {para}
+                  {renderInlineLinks(para)}
                 </p>
               ))}
             </div>

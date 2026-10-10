@@ -12,6 +12,19 @@ export const metadata: Metadata = {
   description:
     "Complete FBR salary tax slabs for 2026-27: all 8 brackets, rates, formulas, what changed from 2025-26, and worked examples for Pakistani salaried individuals.",
   alternates: { canonical: "/tax-slabs" },
+  openGraph: {
+    title: "FBR Tax Slabs 2026-27 Pakistan | Salary Income Tax Rates",
+    description:
+      "Complete FBR salary tax slabs 2026-27: all 8 brackets, rates, formulas and worked examples for Pakistani salaried individuals.",
+    url: "https://calculatepktax.vercel.app/tax-slabs",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FBR Tax Slabs 2026-27 Pakistan | Salary Income Tax Rates",
+    description:
+      "All 8 FBR salary tax slabs for 2026-27 with rates, formulas and worked examples.",
+  },
 };
 
 const SLAB_FAQS = [
@@ -127,6 +140,13 @@ export default function TaxSlabsPage() {
           2027 (1 July 2026 – 30 June 2027), per FBR&apos;s notification under
           the Finance Act 2026. Your employer uses these exact rates for
           monthly tax deduction.
+        </p>
+        <p className="mt-3 text-base leading-relaxed text-gray-600">
+          Searching for the salary tax slab 2026 Pakistan rates? You&apos;re in
+          the right place — the table below lists every 2026-27 income bracket
+          with its rate and formula, plus a comparison against last
+          year&apos;s slabs so you can see exactly how much less tax you pay
+          now.
         </p>
         <p className="mt-2 text-xs text-gray-400">
           Last updated: 28 September 2026 • Source: FBR (fbr.gov.pk)

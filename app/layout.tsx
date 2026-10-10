@@ -60,11 +60,22 @@ export const metadata: Metadata = {
 
 const orgSchema = {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: "CalculatePKTax",
-  url: SITE_URL,
-  description:
-    "Free Pakistan salary tax calculator with FBR income tax slabs 2026-27.",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      name: "CalculatePKTax",
+      url: SITE_URL,
+      description:
+        "Free Pakistan salary tax calculator with FBR income tax slabs 2026-27.",
+    },
+    {
+      "@type": "Organization",
+      name: "CalculatePKTax",
+      url: SITE_URL,
+      description:
+        "Free online salary and income tax calculators for Pakistan using official FBR tax slabs.",
+    },
+  ],
 };
 
 export default function RootLayout({

@@ -2,10 +2,17 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "About CalculatePKTax | Free Pakistan Salary Tax Calculator",
   description:
     "About CalculatePKTax — a free, dedicated Pakistan salary tax calculator with FBR's latest 2026-27 slabs.",
   alternates: { canonical: "/about" },
+  openGraph: {
+    title: "About CalculatePKTax | Free Pakistan Salary Tax Calculator",
+    description:
+      "Free Pakistan salary tax calculator with FBR's official 2026-27 slabs.",
+    url: "https://calculatepktax.vercel.app/about",
+    type: "website",
+  },
 };
 
 export default function AboutPage() {

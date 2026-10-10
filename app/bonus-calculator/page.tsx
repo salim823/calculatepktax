@@ -8,6 +8,19 @@ export const metadata: Metadata = {
   description:
     "Free bonus calculator Pakistan: calculate tax on your bonus salary with FBR 2026-27 slabs. See tax deducted on bonus, net bonus received and effective rate in seconds.",
   alternates: { canonical: "/bonus-calculator" },
+  openGraph: {
+    title: "Free Bonus Calculator Pakistan – Tax on Bonus Salary 2026-27",
+    description:
+      "Free bonus calculator Pakistan: calculate tax deducted on your bonus salary with FBR 2026-27 slabs. Net bonus & effective rate in seconds.",
+    url: "https://calculatepktax.vercel.app/bonus-calculator",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Free Bonus Calculator Pakistan – Tax on Bonus Salary 2026-27",
+    description:
+      "Calculate tax on your bonus salary in Pakistan with FBR 2026-27 slabs. Free, instant, no signup.",
+  },
 };
 
 const BONUS_FAQS = [
@@ -30,6 +43,14 @@ const BONUS_FAQS = [
   {
     q: "Is there any tax-free limit for bonus in Pakistan?",
     a: "No special exemption exists for bonuses. Only the general tax-free threshold applies: total annual salary income up to Rs 600,000 (Rs 50,000/month) is tax-free in Tax Year 2026-27.",
+  },
+  {
+    q: "How do I calculate tax on a monthly bonus in Pakistan?",
+    a: "Use this monthly bonus calculator Pakistan tool: enter your regular monthly salary and the bonus amount as paid. The calculator adds the bonus to your projected annual income and applies FBR's 2026-27 slabs, so the result reflects the exact incremental tax on your bonus — whether it is paid monthly, quarterly or once a year.",
+  },
+  {
+    q: "Is there a separate monthly bonus calculator for Pakistan?",
+    a: "No separate tool is needed — this free bonus calculator Pakistan works for any bonus frequency. Enter the bonus amount exactly as you receive it; the tax logic annualizes your income behind the scenes and computes the correct withholding.",
   },
   {
     q: "Can I reduce the tax on my bonus?",

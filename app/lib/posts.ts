@@ -18,6 +18,62 @@ export interface BlogPost {
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "tax-on-50000-salary-pakistan",
+    title: "Tax on Rs 50,000 Salary in Pakistan 2026-27 – Is It Tax-Free?",
+    description:
+      "Is there income tax on a Rs 50,000 salary in Pakistan? No — Rs 600,000/year is the tax-free limit for 2026-27. See the exact math and what happens when your salary crosses it.",
+    category: "Salary Examples",
+    published: "2026-10-10",
+    updated: "2026-10-10",
+    readTime: "4 min read",
+    sections: [
+      {
+        paragraphs: [
+          "Rs 50,000 per month is the most-searched salary figure in Pakistan's tax questions — because it sits exactly on the tax-free boundary. The short answer: there is zero income tax on a Rs 50,000 monthly salary in Tax Year 2026-27. Your full Rs 50,000 is your take-home pay.",
+          "Here is why: FBR's first salary tax slab charges 0% on annual income up to Rs 600,000. A Rs 50,000 monthly salary equals exactly Rs 600,000 per year (50,000 × 12), so the entire amount falls inside the tax-free slab.",
+        ],
+      },
+      {
+        heading: "The Math: Rs 50,000 Salary Tax Calculation",
+        paragraphs: [
+          "Annual income: Rs 600,000. Applicable slab: up to Rs 600,000 → 0%. Tax = Rs 0 per year, Rs 0 per month. Take-home salary: Rs 50,000 per month. Effective tax rate: 0%.",
+          "Verify it yourself in our [free salary tax calculator](/) — enter 50,000 and watch every figure come out at zero tax.",
+        ],
+      },
+      {
+        heading: "What If Your Salary Rises Just Above Rs 50,000?",
+        paragraphs: [
+          "This is where the progressive system matters. Only the amount above Rs 600,000 is taxed — at just 1% in the next slab. At Rs 55,000/month (Rs 660,000/year), the taxable excess is Rs 60,000, so annual tax is 1% of Rs 60,000 = Rs 600 per year — barely Rs 50 per month. At Rs 51,000/month, the tax is only Rs 120 per year (Rs 10/month).",
+          "Crossing the tax-free limit does not suddenly tax your whole salary — the 1% applies only to the small slice above Rs 600,000.",
+        ],
+      },
+      {
+        heading: "Check Your Payslip",
+        paragraphs: [
+          "If you earn Rs 50,000 or less and your employer still deducts income tax, the withholding is wrong — show them FBR's 2026-27 slab table. Employers sometimes apply last year's logic or a flat estimate; the [FBR tax slabs 2026-27](/tax-slabs) page has the official table you can share with your payroll department.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "Is Rs 50,000 salary taxable in Pakistan?",
+        a: "No. Rs 50,000/month equals Rs 600,000/year, which is exactly FBR's tax-free limit for salaried individuals in 2026-27. Income tax is Rs 0.",
+      },
+      {
+        q: "How much tax on Rs 55,000 salary in Pakistan?",
+        a: "Rs 600 per year (Rs 50/month). Only the Rs 60,000 above the Rs 600,000 tax-free limit is taxed, at 1%.",
+      },
+      {
+        q: "Has the tax-free salary limit changed in 2026-27?",
+        a: "No — the Rs 600,000 annual (Rs 50,000 monthly) tax-free threshold for salaried individuals is unchanged in Tax Year 2026-27.",
+      },
+      {
+        q: "Do I need to file a tax return if my salary is tax-free?",
+        a: "Filing obligations depend on FBR's current rules and your employer's requirements — many employers ask all employees to obtain an NTN and file regardless of tax paid. Check FBR's filer guidelines or ask your payroll department.",
+      },
+    ],
+  },
+  {
     slug: "pakistan-income-tax-calculator",
     title: "Pakistan Income Tax Calculator 2026-27 – Calculate Your Tax Online",
     description:
@@ -56,13 +112,13 @@ export const POSTS: BlogPost[] = [
         heading: "Worked Example: Rs 150,000 Monthly Salary",
         paragraphs: [
           "Annual income: Rs 1,800,000. This falls in the Rs 1,200,001–2,200,000 slab. Tax = Rs 6,000 + 11% of (1,800,000 − 1,200,000) = Rs 6,000 + Rs 66,000 = Rs 72,000 per year, which is Rs 6,000 per month. Take-home salary: Rs 144,000 per month. Effective tax rate: 4%.",
-          "Try the same calculation in our free salary tax calculator to verify it instantly — and see the full FBR tax slabs 2026-27 table if you want the complete rate chart.",
+          "Try the same calculation in our [free salary tax calculator](/) to verify it instantly — and see the full [FBR tax slabs 2026-27 table](/tax-slabs) if you want the complete rate chart.",
         ],
       },
       {
         heading: "Who Should Use This Calculator?",
         paragraphs: [
-          "Salaried employees checking whether their employer's monthly tax deduction is correct, job seekers comparing salary offers by take-home pay, freelancers estimating advance tax, and anyone planning their monthly budget around the real in-hand figure. If your income includes bonuses, remember they are taxed as part of your annual salary — our bonus calculator handles that case separately.",
+          "Salaried employees checking whether their employer's monthly tax deduction is correct, job seekers comparing salary offers by take-home pay, freelancers estimating advance tax, and anyone planning their monthly budget around the real in-hand figure. If your income includes bonuses, remember they are taxed as part of your annual salary — our [bonus calculator](/bonus-calculator) handles that case separately.",
         ],
       },
     ],

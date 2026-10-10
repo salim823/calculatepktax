@@ -14,9 +14,38 @@ export const metadata: Metadata = {
   description:
     "Free tax calculator Pakistan: use our monthly salary tax calculator with official FBR 2026-27 slabs — monthly tax, annual tax, take-home salary & effective rate in seconds.",
   alternates: { canonical: "/" },
+  openGraph: {
+    title: "Monthly Salary Tax Calculator Pakistan | FBR Slabs 2026-27",
+    description:
+      "Free tax calculator Pakistan: monthly salary tax calculator with official FBR 2026-27 slabs. Monthly tax, annual tax & take-home salary in seconds.",
+    url: "https://calculatepktax.vercel.app/",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Monthly Salary Tax Calculator Pakistan | FBR Slabs 2026-27",
+    description:
+      "Free monthly salary tax calculator for Pakistan with FBR 2026-27 slabs. Monthly tax, annual tax & take-home salary in seconds.",
+  },
 };
 
 const HOME_FAQS = [
+  {
+    q: "What is a salary tax calculator Pakistan?",
+    a: "A salary tax calculator Pakistan is a free online tool that computes your income tax from your salary using FBR's official slabs. Enter your monthly salary and it shows your monthly tax deduction, annual tax, take-home pay and effective tax rate — the same figures your employer uses for withholding.",
+  },
+  {
+    q: "How do I use the monthly salary tax calculator?",
+    a: "Type your gross monthly salary into the calculator at the top of this page and select the tax year. Your monthly income tax, annual tax, take-home salary and a slab-by-slab breakdown appear instantly — no signup, no button clicks needed.",
+  },
+  {
+    q: "Is this FBR tax calculator accurate?",
+    a: "Yes. It applies the official FBR salary tax slabs for Tax Year 2026-27 announced in the Finance Act 2026 — the exact rates employers must use for monthly withholding under Section 149 of the Income Tax Ordinance.",
+  },
+  {
+    q: "Which tax year does this income tax calculator Pakistan use?",
+    a: "Tax Year 2026-27 (1 July 2026 – 30 June 2027), with all 8 new FBR slabs, the abolished 9% surcharge, and a comparison against 2025-26 rates built in.",
+  },
   {
     q: "How do I calculate salary tax in Pakistan for 2026-27?",
     a: "Find your annual salary, match it to FBR's 2026-27 slab, and apply the formula: fixed slab amount + rate × (salary − slab lower limit). Or simply enter your salary in the calculator above — it does the math instantly with a full slab breakdown.",

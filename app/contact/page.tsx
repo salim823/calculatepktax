@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Us",
+  title: "Contact CalculatePKTax | Pakistan Tax Calculator Support",
   description:
     "Contact CalculatePKTax — questions about the Pakistan salary tax calculator, slab rates, or corrections.",
   alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Contact CalculatePKTax | Pakistan Tax Calculator Support",
+    description:
+      "Questions about the Pakistan salary tax calculator, FBR slab rates, or corrections.",
+    url: "https://calculatepktax.vercel.app/contact",
+    type: "website",
+  },
 };
 
 const SUPPORT_EMAIL = "contactnowmuhammadharis@gmail.com";
