@@ -18,6 +18,78 @@ export interface BlogPost {
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "pakistan-income-tax-calculator",
+    title: "Pakistan Income Tax Calculator 2026-27 – Calculate Your Tax Online",
+    description:
+      "Use our free Pakistan income tax calculator for 2026-27: enter your salary, get monthly and annual income tax instantly with official FBR slabs. No signup needed.",
+    category: "Calculators",
+    published: "2026-10-10",
+    updated: "2026-10-10",
+    readTime: "6 min read",
+    sections: [
+      {
+        paragraphs: [
+          "A Pakistan income tax calculator tells you exactly how much tax the government takes from your salary — before your employer deducts it. Instead of reading the full FBR slab table and doing the math yourself, you enter your monthly salary and get your monthly tax, annual tax, take-home pay, and effective tax rate in seconds.",
+          "Our free income tax calculator for Pakistan uses the official FBR salary tax slabs for Tax Year 2026-27 (1 July 2026 – 30 June 2027), so the figure you see is the same one your employer's payroll department computes.",
+        ],
+      },
+      {
+        heading: "How to Use the Income Tax Calculator",
+        paragraphs: [
+          "Using the calculator takes less than 30 seconds:",
+        ],
+        list: [
+          "Enter your gross monthly salary in rupees (before any deductions).",
+          "The calculator annualizes it (monthly × 12) and finds your FBR tax slab.",
+          "It applies the progressive slab rates — you only pay each rate on the portion of income inside that bracket.",
+          "You instantly see: monthly income tax, annual income tax, take-home salary, and your effective tax rate.",
+        ],
+      },
+      {
+        heading: "How Income Tax Is Calculated in Pakistan",
+        paragraphs: [
+          "Pakistan uses a progressive tax system for salaried individuals. There are 8 slabs for 2026-27, from 0% on annual income up to Rs 600,000 to 35% on income above Rs 7 million. The key point most people miss: the higher rate applies only to the income above each slab's lower limit, not your whole salary.",
+          "For example, the Rs 1.2M–2.2M bracket charges Rs 6,000 plus 11% of the amount above Rs 1,200,000 — so someone earning Rs 1.8M a year pays 11% only on Rs 600,000, not on the full Rs 1.8M.",
+        ],
+      },
+      {
+        heading: "Worked Example: Rs 150,000 Monthly Salary",
+        paragraphs: [
+          "Annual income: Rs 1,800,000. This falls in the Rs 1,200,001–2,200,000 slab. Tax = Rs 6,000 + 11% of (1,800,000 − 1,200,000) = Rs 6,000 + Rs 66,000 = Rs 72,000 per year, which is Rs 6,000 per month. Take-home salary: Rs 144,000 per month. Effective tax rate: 4%.",
+          "Try the same calculation in our free salary tax calculator to verify it instantly — and see the full FBR tax slabs 2026-27 table if you want the complete rate chart.",
+        ],
+      },
+      {
+        heading: "Who Should Use This Calculator?",
+        paragraphs: [
+          "Salaried employees checking whether their employer's monthly tax deduction is correct, job seekers comparing salary offers by take-home pay, freelancers estimating advance tax, and anyone planning their monthly budget around the real in-hand figure. If your income includes bonuses, remember they are taxed as part of your annual salary — our bonus calculator handles that case separately.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "How is income tax calculated on salary in Pakistan?",
+        a: "Your annual salary is matched against FBR's 8 progressive slabs for 2026-27. Each slab taxes only the income above its lower limit — e.g. 1% above Rs 600,000, 11% above Rs 1.2M, 20% above Rs 2.2M, up to 35% above Rs 7M. Divide the annual figure by 12 for monthly deduction.",
+      },
+      {
+        q: "What is the tax-free salary limit in Pakistan for 2026-27?",
+        a: "Annual salary up to Rs 600,000 (Rs 50,000 per month) is completely tax-free for salaried individuals.",
+      },
+      {
+        q: "Is this income tax calculator accurate?",
+        a: "Yes — it uses the official FBR salary tax slabs for Tax Year 2026-27 announced in the Finance Act 2026, the same rates employers use for monthly withholding under Section 149.",
+      },
+      {
+        q: "Does the calculator include the 9% surcharge?",
+        a: "No surcharge is applied, because the 9% surcharge on high salary income was abolished for Tax Year 2026-27.",
+      },
+      {
+        q: "Is bonus income taxed in Pakistan?",
+        a: "Yes. Bonuses are added to your annual salary income and taxed at your marginal slab rate. Use our bonus calculator to find the exact tax on your bonus.",
+      },
+    ],
+  },
+  {
     slug: "fbr-tax-slabs-2026-27-explained",
     title: "FBR Tax Slabs 2026-27 for Salaried Persons (Complete Table)",
     description:
