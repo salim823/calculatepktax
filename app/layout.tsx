@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/app/components/Navbar";
@@ -86,6 +87,16 @@ export default function RootLayout({
       <body
         className={`${inter.className} flex min-h-screen flex-col bg-white text-gray-900`}
       >
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-6M6X6FF57P"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-6M6X6FF57P');`}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
