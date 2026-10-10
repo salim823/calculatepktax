@@ -49,7 +49,7 @@ export default function BonusCalculatorPage() {
               FBR Tax Year 2026-27 Slabs
             </span>
             <h1 className="mt-5 text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl">
-              Bonus Calculator Pakistan 2026-27
+              Free Bonus Calculator Pakistan 2026-27
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-brand-100 sm:text-lg">
               Got a bonus? Find out exactly how much tax is deducted from your
